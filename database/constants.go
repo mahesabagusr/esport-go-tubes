@@ -12,7 +12,7 @@ func GenerateDummyData() ([]models.Team, []models.Classement) {
 		{ID: 5, Name: "Caps", Kills: 203, Deaths: 71},
 		{ID: 6, Name: "Perkz", Kills: 187, Deaths: 68},
 		{ID: 7, Name: "Doublelift", Kills: 165, Deaths: 92},
-		{ID: 8, Name: "CoreJJ", Kills: 42, Deaths: 107}, 
+		{ID: 8, Name: "CoreJJ", Kills: 42, Deaths: 107},
 		{ID: 9, Name: "JackeyLove", Kills: 231, Deaths: 65},
 		{ID: 10, Name: "Nuguri", Kills: 156, Deaths: 78},
 		{ID: 11, Name: "ShowMaker", Kills: 212, Deaths: 59},
