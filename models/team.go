@@ -1,23 +1,23 @@
 package models
 
 type Team struct {
-	id      int
-	name    string
-	players []Player
-	coach   string
+	ID      int
+	Name    string
+	Players []Player
+	Coach   string
 }
 
 type Player struct {
-	id     int
-	name   string
-	kills  int
-	deaths int
+	ID     int
+	Name   string
+	Kills  int
+	Deaths int
 }
 
 type Classement struct {
-	team []Team
-	pts  int
-	win int
-	lose int
-	winrate int
+	Team    []Team
+	Pts     int
+	Win     int
+	Lose    int
+	Winrate int
 }
