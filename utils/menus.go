@@ -2,19 +2,25 @@ package utils
 
 import "fmt"
 
-func DisplayMainMenu(){
-	fmt.Println("+-----------------------------------------------------------+")
-	fmt.Println("|                       E SPORT GACOR                       |")
-	fmt.Println("+-----------------------------------------------------------+")
-	fmt.Println("| 1. MANAGE TEAM                                            |")
-	fmt.Println("| 2. CURRENT CLASSEMENT                                     |")
+func DisplayMainMenu() {
+	fmt.Printf(`
++-----------------------------------------------------------+
+|                       E SPORT GACOR                       |
++-----------------------------------------------------------+
+| 1. MANAGE TEAM                                            |
+| 2. CURRENT CLASSEMENT                                     |
++-----------------------------------------------------------+
+`)
 }
 
-func DisplayManageTeamMenu(){
-	fmt.Println("+-----------------------------------------------------------+")
-	fmt.Println("|                       E SPORT GACOR                       |")
-	fmt.Println("+-----------------------------------------------------------+")
-	fmt.Println("| 1. ADD TEAM                                               |")
-	fmt.Println("| 2. MODIFY TEAM                                            |")
-	fmt.Println("| 2. DELETE TEAM                                            |")
+func DisplayManageTeamMenu() {
+	fmt.Printf(`
++-----------------------------------------------------------+
+|                       MANAGE TEAM                          |
++-----------------------------------------------------------+
+| 1. ADD TEAM                                               |
+| 2. MODIFY TEAM                                            |
+| 3. DELETE TEAM                                            |
++-----------------------------------------------------------+
+`)
 }
