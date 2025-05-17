@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+
 	utils.DisplayMainMenu()
 	mainSelection := utils.DisplayOption()
 	handlers.HandleMainMenu(mainSelection)
