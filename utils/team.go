@@ -55,7 +55,6 @@ func AddTeam() {
 
 	fmt.Println("\n✅ Tim berhasil ditambahkan!")
 	DisplayAllTeamsMenu()
-	
 }
 
 

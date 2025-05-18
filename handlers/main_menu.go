@@ -1,10 +1,14 @@
 package handlers
 
 import (
+	"esportgacor/utils"
 	"fmt"
 )
 
-func HandleMainMenu(selection int) {
+func HandleMainMenu() {
+	utils.DisplayMainMenu()
+	selection := utils.DisplayOption()
+	
 	switch selection {
 	case 1:
 		HandleTeamMenu()
