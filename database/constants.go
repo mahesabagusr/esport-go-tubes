@@ -3,7 +3,7 @@ package database
 import "esportgacor/models"
 
 
-func GenerateDummyData() ([]models.Team, []models.Classement) {
+func GenerateDummyData() ([]models.Team, []models.Classement, []models.Player) {
 	players := []models.Player{
 		{ID: 1, Name: "Faker", Kills: 287, Deaths: 56},
 		{ID: 2, Name: "Uzi", Kills: 245, Deaths: 72},
@@ -93,5 +93,5 @@ func GenerateDummyData() ([]models.Team, []models.Classement) {
 		},
 	}
 
-	return teams, classement
+	return teams, classement, players
 }

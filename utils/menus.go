@@ -1,6 +1,9 @@
 package utils
 
-import "fmt"
+import (
+	"esportgacor/database"
+	"fmt"
+)
 
 func DisplayMainMenu() {
 	fmt.Printf(`
@@ -23,4 +26,20 @@ func DisplayManageTeamMenu() {
 | 3. DELETE TEAM                                            |
 +-----------------------------------------------------------+
 `)
+}
+
+func DisplayAllTeamsMenu() {
+	fmt.Printf(`
++-----------------------------------------------------------+
+|                   DAFTAR SEMUA TIM & PEMAIN              |
++-----------------------------------------------------------+
+`)
+	for _, team := range database.DB.Teams {
+		fmt.Printf("| ID: %-3d Nama Tim: %-20s Coach: %-10s |\n", team.ID, team.Name, team.Coach)
+		fmt.Println("| Pemain:")
+		for _, player := range team.Players {
+			fmt.Printf("|   - ID: %-3d Nama: %-15s Kills: %-3d Deaths: %-3d |\n", player.ID, player.Name, player.Kills, player.Deaths)
+		}
+		fmt.Println("+-----------------------------------------------------------+")
+	}
 }

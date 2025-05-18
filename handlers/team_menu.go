@@ -10,7 +10,7 @@ func HandleTeamMenu() {
 
 	switch selection {
 	case 1:
-		utils.Addteam()
+		utils.AddTeam()
 	case 2:
 		utils.Modifyteam()
 	case 3:
