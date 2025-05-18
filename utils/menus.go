@@ -24,6 +24,7 @@ func DisplayManageTeamMenu() {
 | 1. ADD TEAM                                               |
 | 2. MODIFY TEAM                                            |
 | 3. DELETE TEAM                                            |
+| 4. BACK                                            				|
 +-----------------------------------------------------------+
 `)
 }
