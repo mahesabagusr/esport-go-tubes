@@ -7,7 +7,7 @@ import (
 func HandleTeamMenu() {
 	for {
 	utils.DisplayManageTeamMenu()
-	selection := utils.DisplayOption()
+	selection := utils.ScanNumber()
 
 	switch selection {
 	case 1:
