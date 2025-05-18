@@ -5,22 +5,24 @@ import (
 )
 
 func HandleTeamMenu() {
+	for {
 	utils.DisplayManageTeamMenu()
 	selection := utils.DisplayOption()
 
 	switch selection {
 	case 1:
 		utils.AddTeam()
-		HandleTeamMenu()
+		return
 	case 2:
 		utils.Modifyteam()
-		HandleTeamMenu()
+		return
 	case 3:
 		utils.DeleteTeam()
-		HandleTeamMenu()
+		return
 	case 4 : 
-	 	HandleMainMenu()
+	 	return
 	default:
 		println("Invalid selection. Please try again.")
+	}
 	}
 }

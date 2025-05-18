@@ -11,7 +11,8 @@ func DisplayMainMenu() {
 |                       E SPORT GACOR                       |
 +-----------------------------------------------------------+
 | 1. MANAGE TEAM                                            |
-| 2. CURRENT CLASSEMENT                                     |
+| 2. DISPLAY ALL TEAMS                                      |
+| 3. DISPLAY CLASSEMENT                                     |
 +-----------------------------------------------------------+
 `)
 }

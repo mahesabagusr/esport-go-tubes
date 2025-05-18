@@ -6,13 +6,17 @@ import (
 )
 
 func HandleMainMenu() {
-	utils.DisplayMainMenu()
-	selection := utils.DisplayOption()
+	for{
+		utils.DisplayMainMenu()
+		selection := utils.DisplayOption()
 	
 	switch selection {
 	case 1:
 		HandleTeamMenu()
+	case 2:
+		utils.DisplayAllTeamsMenu()
 	default:
 		fmt.Println("Invalid selection. Please try again.")
+		}
 	}
 }
