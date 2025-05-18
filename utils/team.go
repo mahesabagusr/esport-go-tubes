@@ -58,7 +58,58 @@ func AddTeam() {
 
 
 func Modifyteam(){
-	fmt.Println("Modify Team belum jadi rek")
+	fmt.Println("=== Update Tim ===")
+	var teamName, coach, player,kills,death string = "", "", "", "", ""
+	fmt.Print("Masukkan Nama Tim yang ingin diubah: ")
+	fmt.Scan(&teamName)
+	
+	for i := 0 ; i < len(database.DB.Teams); i++ {
+		if database.DB.Teams[i].Name != teamName {
+			fmt.Println("Tim tidak ditemukan")
+			return
+		}
+
+			fmt.Println("=== Update Tim ===")
+			fmt.Print("Nama Tim (Isi '-' Jika Tidak Ingin Diubah): ")
+			fmt.Scan(&teamName)
+
+			if coach != "-" {
+				database.DB.Teams[i].Name = teamName
+			}
+
+			fmt.Print("Nama Coach (Isi '-' Jika Tidak Ingin Diubah): ")
+			fmt.Scan(&database.DB.Teams[i].Coach)
+
+			if coach != "-" {
+				database.DB.Teams[i].Coach = coach
+			}
+
+			for j := 0; j < len(database.DB.Teams[i].Players); j++ {
+				fmt.Printf("\n-- Pemain #%d --\n", j+1)
+				fmt.Print("Nama Pemain (Isi '-' Jika Tidak Ingin Diubah): ")
+				fmt.Scan(&player)
+
+				if player != "-" {
+					database.DB.Teams[i].Players[j].Name = player
+				}
+
+				fmt.Print("Jumlah Kills (Isi '-' Jika Tidak Ingin Diubah): ")
+				fmt.Scan(&kills)
+
+				if kills != "-" {
+					database.DB.Teams[i].Players[j].Name = kills
+				}
+
+				fmt.Print("Jumlah Deaths (Isi '-' Jika Tidak Ingin Diubah): ")
+				fmt.Scan(&death)
+
+				if death != "-" {
+					database.DB.Teams[i].Players[j].Name = death
+				}
+			}
+	
+	}
+
 }
 
 func DeleteTeam(){
