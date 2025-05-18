@@ -36,12 +36,15 @@ func DisplayAllTeamsMenu() {
 |                   DAFTAR SEMUA TIM & PEMAIN              |
 +-----------------------------------------------------------+
 `)
-	for _, team := range database.DB.Teams {
+	for i := 0; i < len(database.DB.Teams); i++ {
+		team := database.DB.Teams[i]
 		fmt.Printf("| ID: %-3d Nama Tim: %-20s Coach: %-10s |\n", team.ID, team.Name, team.Coach)
 		fmt.Println("| Pemain:")
-		for _, player := range team.Players {
+		for j := 0; j < len(team.Players); j++ {
+			player := team.Players[j]
 			fmt.Printf("|   - ID: %-3d Nama: %-15s Kills: %-3d Deaths: %-3d |\n", player.ID, player.Name, player.Kills, player.Deaths)
 		}
 		fmt.Println("+-----------------------------------------------------------+")
 	}
 }
+

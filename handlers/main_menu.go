@@ -8,7 +8,7 @@ import (
 func HandleMainMenu() {
 	for{
 		utils.DisplayMainMenu()
-		selection := utils.DisplayOption()
+		selection := utils.ScanNumber()
 	
 	switch selection {
 	case 1:
