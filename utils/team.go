@@ -54,7 +54,6 @@ func AddTeam() {
 	database.DB.Teams = append(database.DB.Teams, newTeam)
 
 	fmt.Println("\n✅ Tim berhasil ditambahkan!")
-	DisplayAllTeamsMenu()
 }
 
 
