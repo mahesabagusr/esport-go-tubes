@@ -53,48 +53,53 @@ func Modifyteam() {
 	DisplayOnlyTeamsMenu()
 	teamName := ScanString("Masukkan Nama Tim yang ingin diubah: ")
 
+	idx := -1
 	for i := 0; i < len(database.DB.Teams); i++ {
-		if database.DB.Teams[i].Name != teamName {
-			fmt.Println("Tim tidak ditemukan")
-			return
+		if database.DB.Teams[i].Name == teamName {
+			idx = i
 		}
+	}
 
-		DisplayOnlyTeamsAndPlayersMenu(i)
+	if idx == -1 {
+		fmt.Println("Tim tidak ditemukan!")
+		return
+	} 
+
+	DisplayOnlyTeamsAndPlayersMenu(idx)
 
 		fmt.Println("=== Update Tim ===")
 		newTeamName := ScanString("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
 
 		if newTeamName != "" {
-			database.DB.Teams[i].Name = newTeamName
+			database.DB.Teams[idx].Name = newTeamName
 		}
 
 		coach := ScanString("Nama Coach (Tekan Enter Jika Tidak Ingin Diubah): ")
 
 		if coach != "" {
-			database.DB.Teams[i].Coach = coach
+			database.DB.Teams[idx].Coach = coach
 		}
 
-		for j := 0; j < len(database.DB.Teams[i].Players); j++ {
+		for j := 0; j < len(database.DB.Teams[idx].Players); j++ {
 			fmt.Printf("\n-- Pemain #%d --\n", j+1)
 			player := ScanString("Nama Pemain (Tekan Enter Jika Tidak Ingin Diubah): ")
 
 			if player != "" {
-				database.DB.Teams[i].Players[j].Name = player
+				database.DB.Teams[idx].Players[j].Name = player
 			}
 
 			killsStr := ScanString("Jumlah Kills (Tekan Enter Jika Tidak Ingin Diubah): ")
 			if killsStr != "" {
 				kills, _ := strconv.Atoi(killsStr)
-				database.DB.Teams[i].Players[j].Kills = kills
+				database.DB.Teams[idx].Players[j].Kills = kills
 			}
 
 			deathsStr := ScanString("Jumlah Deaths (Tekan Enter Jika Tidak Ingin Diubah): ")
 			if deathsStr != "" {
 				deaths, _ := strconv.Atoi(deathsStr)
-				database.DB.Teams[i].Players[j].Deaths = deaths
+				database.DB.Teams[idx].Players[j].Deaths = deaths
 			}
 		}
-	}
 }
 
 func DeleteTeam() {
