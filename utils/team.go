@@ -65,39 +65,39 @@ func Modifyteam() {
 		}
 
 		fmt.Println("=== Update Tim ===")
-		fmt.Print("Nama Tim (Isi '-' Jika Tidak Ingin Diubah): ")
+		fmt.Print("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
 		newTeamName := ScanString()
 
-		if newTeamName != "-" {
+		if newTeamName != "" {
 			database.DB.Teams[i].Name = newTeamName
 		}
 
-		fmt.Print("Nama Coach (Isi '-' Jika Tidak Ingin Diubah): ")
+		fmt.Print("Nama Coach (Tekan Enter Jika Tidak Ingin Diubah): ")
 		coach := ScanString()
 
-		if coach != "-" {
+		if coach != "" {
 			database.DB.Teams[i].Coach = coach
 		}
 
 		for j := 0; j < len(database.DB.Teams[i].Players); j++ {
 			fmt.Printf("\n-- Pemain #%d --\n", j+1)
-			fmt.Print("Nama Pemain (Isi '-' Jika Tidak Ingin Diubah): ")
+			fmt.Print("Nama Pemain (Tekan Enter Jika Tidak Ingin Diubah): ")
 			player := ScanString()
 
-			if player != "-" {
+			if player != "" {
 				database.DB.Teams[i].Players[j].Name = player
 			}
 
-			fmt.Print("Jumlah Kills (Isi '-' Jika Tidak Ingin Diubah): ")
+			fmt.Print("Jumlah Kills (Tekan Enter Jika Tidak Ingin Diubah): ")
 			killsStr := ScanString()
-			if killsStr != "-" {
+			if killsStr != "" {
 				kills, _ := strconv.Atoi(killsStr)
 				database.DB.Teams[i].Players[j].Kills = kills
 			}
 
-			fmt.Print("Jumlah Deaths (Isi '-' Jika Tidak Ingin Diubah): ")
+			fmt.Print("Jumlah Deaths (Tekan Enter Jika Tidak Ingin Diubah): ")
 			deathsStr := ScanString()
-			if deathsStr != "-" {
+			if deathsStr != "" {
 				deaths, _ := strconv.Atoi(deathsStr)
 				database.DB.Teams[i].Players[j].Deaths = deaths
 			}

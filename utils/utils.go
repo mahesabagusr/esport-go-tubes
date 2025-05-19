@@ -2,7 +2,6 @@ package utils
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -11,7 +10,6 @@ import (
 var reader = bufio.NewReader(os.Stdin)
 
 func ScanNumber() int {
-	fmt.Print("Pilih Opsi: ")
 	input, _ := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 	option, _ := strconv.Atoi(input)

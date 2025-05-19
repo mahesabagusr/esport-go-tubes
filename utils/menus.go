@@ -46,5 +46,8 @@ func DisplayAllTeamsMenu() {
 		}
 		fmt.Println("+-----------------------------------------------------------+")
 	}
+	fmt.Println("Tekan Enter untuk melanjutkan...")
+	ScanString()
+	
 }
 
