@@ -100,6 +100,8 @@ func Modifyteam() {
 func DeleteTeam() {
 	sortedTeam := SortTeamsWithName(database.DB.Teams)
 
+	DisplayOnlyTeamsMenu()
+
 	fmt.Println("=== Delete Tim ===")
 	teamName := ScanString("Masukkan Nama Tim yang ingin dihapus: ")
 
