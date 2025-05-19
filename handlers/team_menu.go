@@ -20,7 +20,7 @@ func HandleTeamMenu() {
 		utils.DeleteTeam()
 		return
 	case 4 : 
-	 	return
+	 	return  
 	default:
 		println("Invalid selection. Please try again.")
 	}

@@ -30,7 +30,7 @@ func DisplayManageTeamMenu() {
 `)
 }
 
-func DisplayAllTeamsMenu() {
+func DisplayAllTeamsAndPlayersMenu() {
 	fmt.Printf(`
 +-----------------------------------------------------------+
 |                   DAFTAR SEMUA TIM & PEMAIN              |
@@ -47,5 +47,34 @@ func DisplayAllTeamsMenu() {
 		fmt.Println("+-----------------------------------------------------------+")
 	}
 	ScanString("Tekan Enter untuk melanjutkan...")
+}
+
+func DisplayOnlyTeamsMenu(){
+	    fmt.Printf(`
++---------------------------+
+|       DAFTAR TIM          |
++---------------------------+
+`)
+    for i := 0; i < len(database.DB.Teams); i++ {
+        team := database.DB.Teams[i]
+        fmt.Printf("| %-3d | %-20s |\n", team.ID, team.Name)
+    }
+    fmt.Println("+---------------------------+")
+}
+
+func DisplayOnlyTeamsAndPlayersMenu(i int) {
+	fmt.Printf(`
++-----------------------------------------------------------+
+|                   DAFTAR SEMUA TIM & PEMAIN              |
++-----------------------------------------------------------+
+`)
+		team := database.DB.Teams[i]
+		fmt.Printf("| ID: %-3d Nama Tim: %-20s Coach: %-10s |\n", team.ID, team.Name, team.Coach)
+		fmt.Println("| Pemain:")
+		for j := 0; j < len(team.Players); j++ {
+			player := team.Players[j]
+			fmt.Printf("|   - ID: %-3d Nama: %-15s Kills: %-3d Deaths: %-3d |\n", player.ID, player.Name, player.Kills, player.Deaths)
+		}
+		fmt.Println("+-----------------------------------------------------------+")
 }
 

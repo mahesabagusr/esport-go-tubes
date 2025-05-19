@@ -50,7 +50,7 @@ func AddTeam() {
 
 func Modifyteam() {
 	fmt.Println("=== Update Tim ===")
-
+	DisplayOnlyTeamsMenu()
 	teamName := ScanString("Masukkan Nama Tim yang ingin diubah: ")
 
 	for i := 0; i < len(database.DB.Teams); i++ {
@@ -58,6 +58,8 @@ func Modifyteam() {
 			fmt.Println("Tim tidak ditemukan")
 			return
 		}
+
+		DisplayOnlyTeamsAndPlayersMenu(i)
 
 		fmt.Println("=== Update Tim ===")
 		newTeamName := ScanString("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
