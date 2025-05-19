@@ -10,24 +10,19 @@ import (
 func AddTeam() {
 	fmt.Println("=== Tambah Tim Baru ===")
 
-	fmt.Print("Nama Tim: ")
-	teamName := ScanString()
+	teamName := ScanString("Nama Tim: ")
 
-	fmt.Print("Nama Coach: ")
-	coachName := ScanString()
+	coachName := ScanString("Nama Coach: ")
 
 	var players []models.Player
 	for i := 0; i < 5; i++ {
 		fmt.Printf("\n-- Pemain #%d --\n", i+1)
 
-		fmt.Print("Nama Pemain: ")
-		playerName := ScanString()
+		playerName := ScanString("Nama Pemain: ")
 
-		fmt.Print("Jumlah Kills: ")
-		kills := ScanNumber()
+		kills := ScanNumber("Jumlah Kills: ")
 
-		fmt.Print("Jumlah Deaths: ")
-		deaths := ScanNumber()
+		deaths := ScanNumber("Jumlah Deaths: ")
 
 		database.DB.LastPlayerID++
 		player := models.Player{
@@ -50,13 +45,13 @@ func AddTeam() {
 
 	database.DB.Teams = append(database.DB.Teams, newTeam)
 
-	fmt.Println("\n✅ Tim berhasil ditambahkan!")
+	fmt.Println("\nTim berhasil ditambahkan!")
 }
 
 func Modifyteam() {
 	fmt.Println("=== Update Tim ===")
-	fmt.Print("Masukkan Nama Tim yang ingin diubah: ")
-	teamName := ScanString()
+
+	teamName := ScanString("Masukkan Nama Tim yang ingin diubah: ")
 
 	for i := 0; i < len(database.DB.Teams); i++ {
 		if database.DB.Teams[i].Name != teamName {
@@ -65,15 +60,13 @@ func Modifyteam() {
 		}
 
 		fmt.Println("=== Update Tim ===")
-		fmt.Print("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
-		newTeamName := ScanString()
+		newTeamName := ScanString("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
 
 		if newTeamName != "" {
 			database.DB.Teams[i].Name = newTeamName
 		}
 
-		fmt.Print("Nama Coach (Tekan Enter Jika Tidak Ingin Diubah): ")
-		coach := ScanString()
+		coach := ScanString("Nama Coach (Tekan Enter Jika Tidak Ingin Diubah): ")
 
 		if coach != "" {
 			database.DB.Teams[i].Coach = coach
@@ -81,22 +74,19 @@ func Modifyteam() {
 
 		for j := 0; j < len(database.DB.Teams[i].Players); j++ {
 			fmt.Printf("\n-- Pemain #%d --\n", j+1)
-			fmt.Print("Nama Pemain (Tekan Enter Jika Tidak Ingin Diubah): ")
-			player := ScanString()
+			player := ScanString("Nama Pemain (Tekan Enter Jika Tidak Ingin Diubah): ")
 
 			if player != "" {
 				database.DB.Teams[i].Players[j].Name = player
 			}
 
-			fmt.Print("Jumlah Kills (Tekan Enter Jika Tidak Ingin Diubah): ")
-			killsStr := ScanString()
+			killsStr := ScanString("Jumlah Kills (Tekan Enter Jika Tidak Ingin Diubah): ")
 			if killsStr != "" {
 				kills, _ := strconv.Atoi(killsStr)
 				database.DB.Teams[i].Players[j].Kills = kills
 			}
 
-			fmt.Print("Jumlah Deaths (Tekan Enter Jika Tidak Ingin Diubah): ")
-			deathsStr := ScanString()
+			deathsStr := ScanString("Jumlah Deaths (Tekan Enter Jika Tidak Ingin Diubah): ")
 			if deathsStr != "" {
 				deaths, _ := strconv.Atoi(deathsStr)
 				database.DB.Teams[i].Players[j].Deaths = deaths
@@ -109,8 +99,7 @@ func DeleteTeam() {
 	sortedTeam := SortTeamsWithName(database.DB.Teams)
 
 	fmt.Println("=== Delete Tim ===")
-	fmt.Print("Masukkan Nama Tim yang ingin dihapus: ")
-	teamName := ScanString()
+	teamName := ScanString("Masukkan Nama Tim yang ingin dihapus: ")
 
 	found := false
 	var targetTeamId int = -1

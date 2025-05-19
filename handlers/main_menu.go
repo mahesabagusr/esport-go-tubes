@@ -8,7 +8,7 @@ import (
 func HandleMainMenu() {
 	for{
 		utils.DisplayMainMenu()
-		selection := utils.ScanNumber()
+		selection := utils.ScanNumber("Pilih Opsi: ")
 	
 	switch selection {
 	case 1:

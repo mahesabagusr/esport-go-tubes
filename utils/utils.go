@@ -5,18 +5,21 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"fmt"
 )
 
 var reader = bufio.NewReader(os.Stdin)
 
-func ScanNumber() int {
+func ScanNumber(propmt string) int {
+	fmt.Print(propmt)
 	input, _ := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 	option, _ := strconv.Atoi(input)
 	return option
 }
 
-func ScanString() string {
+func ScanString(propmt string) string {
+	fmt.Print(propmt)
 	input, _ := reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 	return input
