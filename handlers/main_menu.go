@@ -8,15 +8,15 @@ import (
 func HandleMainMenu() {
 	for{
 		utils.DisplayMainMenu()
-		selection := utils.ScanNumber()
+		selection := utils.ScanNumber("Pilih Opsi: ")
 	
 	switch selection {
 	case 1:
 		HandleTeamMenu()
 	case 2:
-		utils.DisplayAllTeamsMenu()
+		utils.DisplayAllTeamsAndPlayersMenu()
 	default:
-		fmt.Println("Invalid selection. Please try again.")
+		fmt.Println("Pilihan tidak valid. Silakan coba lagi.")
 		}
 	}
 }

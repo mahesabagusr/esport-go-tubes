@@ -7,7 +7,7 @@ import (
 func HandleTeamMenu() {
 	for {
 	utils.DisplayManageTeamMenu()
-	selection := utils.ScanNumber()
+	selection := utils.ScanNumber("Pilih Opsi: ")
 
 	switch selection {
 	case 1:
@@ -20,7 +20,7 @@ func HandleTeamMenu() {
 		utils.DeleteTeam()
 		return
 	case 4 : 
-	 	return
+	 	return  
 	default:
 		println("Invalid selection. Please try again.")
 	}
