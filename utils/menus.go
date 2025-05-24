@@ -20,12 +20,25 @@ func DisplayMainMenu() {
 func DisplayManageTeamMenu() {
 	fmt.Printf(`
 +-----------------------------------------------------------+
-|                       MANAGE TEAM                          |
+|                       MANAGE TEAM                         |
 +-----------------------------------------------------------+
 | 1. ADD TEAM                                               |
 | 2. MODIFY TEAM                                            |
 | 3. DELETE TEAM                                            |
-| 4. BACK                                            				|
+| 4. BACK                                            	    |
++-----------------------------------------------------------+
+`)
+}
+
+func DisplayManageMatchMenu() {
+	fmt.Printf(`
++-----------------------------------------------------------+
+|                      MANAGE MATCH                         |
++-----------------------------------------------------------+
+| 1. ADD MATCH                                              |
+| 2. MODIFY MATCH                                           |
+| 3. VIEW TEAM                                              |
+| 4. BACK                                            	    |
 +-----------------------------------------------------------+
 `)
 }
@@ -33,7 +46,7 @@ func DisplayManageTeamMenu() {
 func DisplayAllTeamsAndPlayersMenu() {
 	fmt.Printf(`
 +-----------------------------------------------------------+
-|                   DAFTAR SEMUA TIM & PEMAIN              |
+|                   DAFTAR SEMUA TIM & PEMAIN               |
 +-----------------------------------------------------------+
 `)
 	for i := 0; i < len(database.DB.Teams); i++ {
@@ -65,7 +78,7 @@ func DisplayOnlyTeamsMenu(){
 func DisplayOnlyTeamsAndPlayersMenu(i int) {
 	fmt.Printf(`
 +-----------------------------------------------------------+
-|                   DAFTAR SEMUA TIM & PEMAIN              |
+|                   DAFTAR SEMUA TIM & PEMAIN               |
 +-----------------------------------------------------------+
 `)
 		team := database.DB.Teams[i]
