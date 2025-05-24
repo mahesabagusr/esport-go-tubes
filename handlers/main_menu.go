@@ -15,6 +15,8 @@ func HandleMainMenu() {
 		HandleTeamMenu()
 	case 2:
 		utils.DisplayAllTeamsAndPlayersMenu()
+	case 4:
+		HandleTeamMenu()
 	default:
 		fmt.Println("Pilihan tidak valid. Silakan coba lagi.")
 		}
