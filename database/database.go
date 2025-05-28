@@ -16,8 +16,10 @@ func InitDB() *models.Database {
 		Teams:        teams,
 		Classement:   classement,
 		Players:      players,
+		Matches:      []models.Match{},
 		LastTeamID:   lastTeamID,
 		LastPlayerID: lastPlayerID,
+
 	}
 
 	return DB
