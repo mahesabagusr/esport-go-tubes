@@ -8,7 +8,20 @@ import (
 
 func ViewMatches() {
 
+fmt.Printf(`
++-----------------------------------------------------------+
+|                      DAFTAR MATCH                         |
++-----------------------------------------------------------+
+`)
+	for i := 0; i < len(database.DB.Matches); i++ {
+		match := database.DB.Matches[i]
+		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		fmt.Println("+-----------------------------------------------------------+")
+	}
+	ScanString("Tekan Enter untuk melanjutkan...")
 }
+	
+
 
 func AddMatches() {
 fmt.Println("=== TAMBAHKAN MATCH ===")
