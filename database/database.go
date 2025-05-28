@@ -11,7 +11,7 @@ func InitDB() *models.Database {
 
 	lastTeamID := len(teams)
 	lastPlayerID := len(players)
-	lastMatchID := len(DB.Matches)
+	lastMatchID := 0
 
 	DB = &models.Database{
 		Teams:        teams,

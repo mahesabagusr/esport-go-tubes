@@ -11,30 +11,41 @@ func ViewMatches() {
 }
 
 func AddMatches() {
-	fmt.Println("=== TAMBAHKAN MATCH ===")
-	team1:= ScanString("Nama Tim Pertama: ")
+fmt.Println("=== TAMBAHKAN MATCH ===")
+	
+	idTeam1 := ScanNumber("ID Tim Pertama: ")
+	team1Index := linearSearchByID(idTeam1)
 
-	idx := -1
-	for i := 0; i < len(database.DB.Teams); i++ {
-		if database.DB.Teams[i].Name == team1 {
-			idx = i
-		}
+	if team1Index == -1 {
+		fmt.Println("Tim pertama tidak ditemukan.")
+		return
 	}
 
-	score1:= ScanNumber("Jumlah Score: ")
+	score1 := ScanNumber("Jumlah Skor Tim Pertama: ")
+
+	idTeam2 := ScanNumber("ID Tim Kedua: ")
+	team2Index := linearSearchByID(idTeam2)
+	if team2Index == -1 {
+		fmt.Println("Tim kedua tidak ditemukan.")
+		return
+	}
+
+	score2 := ScanNumber("Jumlah Skor Tim Kedua: ")
 
 	database.DB.LastMatchID++
 	match := models.Match{
 		MatchID: database.DB.LastMatchID,
-		Team1: database.DB.Teams[idx], 
-		Score1: score1,
-		Team2: team2, 
-		Score2: score2,
+		Team1:   database.DB.Teams[team1Index],
+		Score1:  score1,
+		Team2:   database.DB.Teams[team2Index],
+		Score2:  score2,
 	}
-	database.DB.Matches= append(database.DB.Matches, match)
-	
+
+	database.DB.Matches = append(database.DB.Matches, match)
+
+	fmt.Println("Match berhasil ditambahkan.")
 }
 
 func EditMatches() {
-
+	
 }
