@@ -2,10 +2,10 @@ package utils
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
-	"fmt"
 )
 
 var reader = bufio.NewReader(os.Stdin)

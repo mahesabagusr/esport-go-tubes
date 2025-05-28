@@ -69,7 +69,15 @@ func EditMatches() {
 		fmt.Println("Match Tidak Ditemukan")
 		return
 	} else {
-		fmt.Printf("Match Ditemukan\n")
+		match:= database.DB.Matches[idx]
+		fmt.Printf("Match Ditemukan \n")
+		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		database.DB.Matches[idx].Score1=ScanNumber("Masukan Skor Tim 1: ")
+		database.DB.Matches[idx].Score2=ScanNumber("Masukan Skor Tim 2: ")
+		match= database.DB.Matches[idx]
+		fmt.Println("Match Berhasil di Update")
+		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		
 	}
 	ScanString("Tekan Enter untuk melanjutkan...")
 
