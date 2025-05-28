@@ -8,13 +8,26 @@ import (
 
 func ViewMatches() {
 
+fmt.Printf(`
++-----------------------------------------------------------+
+|                      DAFTAR MATCH                         |
++-----------------------------------------------------------+
+`)
+	for i := 0; i < len(database.DB.Matches); i++ {
+		match := database.DB.Matches[i]
+		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		fmt.Println("+-----------------------------------------------------------+")
+	}
+	ScanString("Tekan Enter untuk melanjutkan...")
 }
+	
+
 
 func AddMatches() {
 fmt.Println("=== TAMBAHKAN MATCH ===")
 	
 	idTeam1 := ScanNumber("ID Tim Pertama: ")
-	team1Index := linearSearchByID(idTeam1)
+	team1Index := linearSearchByTeamID(idTeam1)
 
 	if team1Index == -1 {
 		fmt.Println("Tim pertama tidak ditemukan.")
@@ -24,10 +37,12 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 	score1 := ScanNumber("Jumlah Skor Tim Pertama: ")
 
 	idTeam2 := ScanNumber("ID Tim Kedua: ")
-	team2Index := linearSearchByID(idTeam2)
+	team2Index := linearSearchByTeamID(idTeam2)
 	if team2Index == -1 {
 		fmt.Println("Tim kedua tidak ditemukan.")
 		return
+	} else if team1Index==team2Index {
+		fmt.Println("Tim tidak boleh sama")
 	}
 
 	score2 := ScanNumber("Jumlah Skor Tim Kedua: ")
@@ -47,5 +62,23 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 }
 
 func EditMatches() {
-	
+	fmt.Println("=== Update Match Result ===")
+	MatchID:= ScanNumber("Masukan ID Match yang ingin diubah: ")
+	idx :=binarySearchByMatchID(MatchID)
+	if idx == -1 {
+		fmt.Println("Match Tidak Ditemukan")
+		return
+	} else {
+		match:= database.DB.Matches[idx]
+		fmt.Printf("Match Ditemukan \n")
+		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		database.DB.Matches[idx].Score1=ScanNumber("Masukan Skor Tim 1: ")
+		database.DB.Matches[idx].Score2=ScanNumber("Masukan Skor Tim 2: ")
+		match= database.DB.Matches[idx]
+		fmt.Println("Match Berhasil di Update")
+		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		
+	}
+	ScanString("Tekan Enter untuk melanjutkan...")
+
 }

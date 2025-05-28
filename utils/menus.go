@@ -13,6 +13,7 @@ func DisplayMainMenu() {
 | 1. MANAGE TEAM                                            |
 | 2. DISPLAY ALL TEAMS                                      |
 | 3. DISPLAY CLASSEMENT                                     |
+| 4. MANAGE MATCHES											|
 +-----------------------------------------------------------+
 `)
 }
@@ -37,7 +38,7 @@ func DisplayManageMatchMenu() {
 +-----------------------------------------------------------+
 | 1. ADD MATCH                                              |
 | 2. MODIFY MATCH                                           |
-| 3. VIEW TEAM                                              |
+| 3. VIEW MATCH                                             |
 | 4. BACK                                            	    |
 +-----------------------------------------------------------+
 `)
@@ -89,5 +90,9 @@ func DisplayOnlyTeamsAndPlayersMenu(i int) {
 			fmt.Printf("|   - ID: %-3d Nama: %-15s Kills: %-3d Deaths: %-3d |\n", player.ID, player.Name, player.Kills, player.Deaths)
 		}
 		fmt.Println("+-----------------------------------------------------------+")
+}
+
+func DisplayClassement(){
+	fmt.Println("Belum ada le")
 }
 

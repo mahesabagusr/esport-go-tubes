@@ -4,7 +4,7 @@ import (
 	"esportgacor/database"
 )
 
-func linearSearchByID(TeamID int) int{
+func linearSearchByTeamID(TeamID int) int{
 	idx := -1
 	for i := 0; i < len(database.DB.Teams); i++ {
 		if database.DB.Teams[i].ID == TeamID {
@@ -13,4 +13,23 @@ func linearSearchByID(TeamID int) int{
 	}
 
 	return idx
+}
+
+func binarySearchByMatchID(MatchID int) int {
+	var left, right, mid, idx int
+	left= 0 
+	right= len(database.DB.Matches)-1
+
+	for left<right && idx==-1 {
+		mid= (left+right)/2
+		if database.DB.Matches[mid].MatchID==MatchID{
+			idx= mid
+		}else if database.DB.Matches[mid].MatchID<MatchID{
+			left= mid +1
+		}else {
+			right = mid - 1
+		}
+	}
+	return idx
+
 }
