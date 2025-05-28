@@ -41,6 +41,8 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 	if team2Index == -1 {
 		fmt.Println("Tim kedua tidak ditemukan.")
 		return
+	} else if team1Index==team2Index {
+		fmt.Println("Tim tidak boleh sama")
 	}
 
 	score2 := ScanNumber("Jumlah Skor Tim Kedua: ")
