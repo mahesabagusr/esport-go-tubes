@@ -19,7 +19,7 @@ func AddMatches() {
 	database.DB.LastMatchID++
 	match := models.Match{
 		MatchID: database.DB.LastMatchID,
-		Team1:team1 , //Harus Buat Search Algo
+		Team1:
 		Score1: score1,
 		Team2: team2, 
 		Score2: score2,
