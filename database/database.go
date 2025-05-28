@@ -11,15 +11,16 @@ func InitDB() *models.Database {
 
 	lastTeamID := len(teams)
 	lastPlayerID := len(players)
+	lastMatchID := 0
 
 	DB = &models.Database{
 		Teams:        teams,
 		Classement:   classement,
 		Players:      players,
-		Matches:      []models.Match{},
+		Matches: 		[]models.Match{},
 		LastTeamID:   lastTeamID,
 		LastPlayerID: lastPlayerID,
-
+		LastMatchID: lastMatchID,
 	}
 
 	return DB
