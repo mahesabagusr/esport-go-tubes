@@ -27,7 +27,7 @@ func AddMatches() {
 fmt.Println("=== TAMBAHKAN MATCH ===")
 	
 	idTeam1 := ScanNumber("ID Tim Pertama: ")
-	team1Index := linearSearchByID(idTeam1)
+	team1Index := linearSearchByTeamID(idTeam1)
 
 	if team1Index == -1 {
 		fmt.Println("Tim pertama tidak ditemukan.")
@@ -37,7 +37,7 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 	score1 := ScanNumber("Jumlah Skor Tim Pertama: ")
 
 	idTeam2 := ScanNumber("ID Tim Kedua: ")
-	team2Index := linearSearchByID(idTeam2)
+	team2Index := linearSearchByTeamID(idTeam2)
 	if team2Index == -1 {
 		fmt.Println("Tim kedua tidak ditemukan.")
 		return
@@ -62,5 +62,15 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 }
 
 func EditMatches() {
-	
+	fmt.Println("=== Update Match Result ===")
+	MatchID:= ScanNumber("Masukan ID Match yang ingin diubah: ")
+	idx :=binarySearchByMatchID(MatchID)
+	if idx == -1 {
+		fmt.Println("Match Tidak Ditemukan")
+		return
+	} else {
+		fmt.Printf("Match Ditemukan\n")
+	}
+	ScanString("Tekan Enter untuk melanjutkan...")
+
 }
