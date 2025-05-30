@@ -12,7 +12,7 @@ func WinratePercentage(wins, losses int)int {
 	return int(float64(wins)/float64(losses/wins)*100)
 }
 
-func WinLoseDraw(TeamID1, TeamID2, ScoreT1, ScoreT2 int) {
+func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 	var Win1, Lose1, Draw1 int
 	var Win2, Lose2, Draw2 int
 	if ScoreT1< ScoreT2{
@@ -27,8 +27,8 @@ func WinLoseDraw(TeamID1, TeamID2, ScoreT1, ScoreT2 int) {
 	}
 	//Team 1 Processing
 	//Is Team 1 In Classement Table Already? If No, Append to Classement
-	idx:=linearSearchByTeamIDInClassement(TeamID1)
-	if idx == -1 && len(database.DB.Classement) > 0 {
+	idx:=linearSearchByTeamNameInClassement(TeamName1)
+	if idx == -1 {
 		Classement := models.Classement{
 		Team: database.DB.Teams[idx],
 		Pts: ((Win1*3)+(Draw1*1)+(Lose1*0)),
@@ -42,12 +42,12 @@ func WinLoseDraw(TeamID1, TeamID2, ScoreT1, ScoreT2 int) {
 		database.DB.Classement[idx].Pts+= ((Win1*3)+(Draw1*1)+(Lose1*0))
 		database.DB.Classement[idx].Win+= Win1
 		database.DB.Classement[idx].Lose+= Lose1
-		database.DB.Classement[idx].Winrate+= WinratePercentage(database.DB.Classement[idx].Win, database.DB.Classement[idx].Lose)
+		database.DB.Classement[idx].Winrate= WinratePercentage(database.DB.Classement[idx].Win, database.DB.Classement[idx].Lose)
 	}
 	//Team 2 Processing
 	//Is team 2 in the classement yet? If no then append
-	idx=linearSearchByTeamIDInClassement(TeamID2)
-	if idx == -1 && len(database.DB.Classement) > 0 {
+	idx=linearSearchByTeamNameInClassement(TeamName2)
+	if idx == -1 {
 		Classement := models.Classement{
 		Team: database.DB.Teams[idx],
 		Pts: ((Win2*3)+(Draw2*1)+(Lose2*0)),
