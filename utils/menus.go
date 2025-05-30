@@ -93,6 +93,10 @@ func DisplayOnlyTeamsAndPlayersMenu(i int) {
 }
 
 func DisplayClassement(){
-	fmt.Println("Belum ada le")
+	fmt.Printf(`
++-----------------------------------------------------------+
+|                         KLASEMEN                          |
++-----------------------------------------------------------+
+`)
 }
 

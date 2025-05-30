@@ -7,7 +7,7 @@ import (
 var DB *models.Database
 
 func InitDB() *models.Database {
-	teams, classement, players:= GenerateDummyData()
+	teams, players:= GenerateDummyData()
 
 	lastTeamID := len(teams)
 	lastPlayerID := len(players)
@@ -15,7 +15,7 @@ func InitDB() *models.Database {
 
 	DB = &models.Database{
 		Teams:        teams,
-		Classement:   classement,
+		Classement:   []models.Classement{},
 		Players:      players,
 		Matches: 		[]models.Match{},
 		LastTeamID:   lastTeamID,
