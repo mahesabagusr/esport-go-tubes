@@ -14,13 +14,13 @@ func InitDB() *models.Database {
 	lastMatchID := 0
 
 	DB = &models.Database{
-		Teams:        teams,
-		Classement:   []models.Classement{},
-		Players:      players,
-		Matches: 		[]models.Match{},
-		LastTeamID:   lastTeamID,
-		LastPlayerID: lastPlayerID,
-		LastMatchID: lastMatchID,
+		Teams:         teams,
+		Classement:    []models.Classement{},
+		Players:       players,
+		Matches: 	   []models.Match{},
+		LastTeamID:    lastTeamID,
+		LastPlayerID:  lastPlayerID,
+		LastMatchID:   lastMatchID,
 	}
 
 	return DB

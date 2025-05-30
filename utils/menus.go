@@ -98,5 +98,11 @@ func DisplayClassement(){
 |                         KLASEMEN                          |
 +-----------------------------------------------------------+
 `)
+fmt.Printf("|%-3s| %-10s   %-4s %-4s %-4s %-4s %-4s |\n", "Pos", "Nama Tim", "Pts", "Win", "Lose", "Draw", "WR%")
+for i:= 1 ; i<= len(database.DB.Teams); i++{
+	
+}
+	
+
 }
 
