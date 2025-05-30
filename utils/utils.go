@@ -24,10 +24,3 @@ func ScanString(propmt string) string {
 	input = strings.TrimSpace(input)
 	return input
 }
-
-func WinratePercentage(wins, losses int)int {
-	if wins == 0 && losses == 0 {
-		return 0
-	}
-	return int(float64(wins)/float64(losses/wins)*100)
-}

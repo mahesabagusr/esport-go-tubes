@@ -43,6 +43,7 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 		return
 	} else if team1Index==team2Index {
 		fmt.Println("Tim tidak boleh sama")
+		return
 	}
 
 	score2 := ScanNumber("Jumlah Skor Tim Kedua: ")
@@ -59,6 +60,7 @@ fmt.Println("=== TAMBAHKAN MATCH ===")
 	database.DB.Matches = append(database.DB.Matches, match)
 
 	fmt.Println("Match berhasil ditambahkan.")
+	WinLoseDraw(match.Team1.Name, match.Team2.Name, score1, score2)
 }
 
 func EditMatches() {
@@ -77,8 +79,10 @@ func EditMatches() {
 		match= database.DB.Matches[idx]
 		fmt.Println("Match Berhasil di Update")
 		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		WinLoseDraw(match.Team1.Name, match.Team1.Name, match.Score1, match.Score2)
 		
 	}
+	
 	ScanString("Tekan Enter untuk melanjutkan...")
 
 }

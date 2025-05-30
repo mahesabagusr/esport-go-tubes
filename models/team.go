@@ -15,7 +15,7 @@ type Player struct {
 }
 
 type Classement struct {
-	Team    []Team
+	Team    Team
 	Pts     int
 	Win     int
 	Lose    int
