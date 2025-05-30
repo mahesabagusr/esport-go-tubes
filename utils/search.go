@@ -33,3 +33,25 @@ func binarySearchByMatchID(MatchID int) int {
 	return idx
 
 }
+
+func linearSearchByTeamNameInClassement(TeamName string) int{
+	idx := -1
+	for i := 0; i < len(database.DB.Classement); i++ {
+		if database.DB.Classement[i].Team.Name == TeamName {
+			idx = i
+		}
+	}
+
+	return idx
+}
+
+func linearSearchByTeamName(TeamName string) int{
+	idx := -1
+	for i := 0; i < len(database.DB.Teams); i++ {
+		if database.DB.Teams[i].Name == TeamName {
+			idx = i
+		}
+	}
+
+	return idx
+}
