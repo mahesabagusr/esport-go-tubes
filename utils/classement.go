@@ -14,6 +14,7 @@ func WinratePercentage(wins, losses int) int {
 }
 
 
+
 func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 	var Win1, Lose1, Draw1 int
 	var Win2, Lose2, Draw2 int
@@ -63,7 +64,7 @@ func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 		database.DB.Classement[idx].Pts+= ((Win2*3)+(Draw2*1)+(Lose2*0))
 		database.DB.Classement[idx].Win+= Win2
 		database.DB.Classement[idx].Lose+= Lose2
-		database.DB.Classement[idx].Winrate+= WinratePercentage(database.DB.Classement[idx].Win, database.DB.Classement[idx].Lose)
+		database.DB.Classement[idx].Winrate= WinratePercentage(database.DB.Classement[idx].Win, database.DB.Classement[idx].Lose)
 	}
 	
 
