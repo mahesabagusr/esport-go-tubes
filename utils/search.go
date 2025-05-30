@@ -44,3 +44,14 @@ func linearSearchByTeamNameInClassement(TeamName string) int{
 
 	return idx
 }
+
+func linearSearchByTeamName(TeamName string) int{
+	idx := -1
+	for i := 0; i < len(database.DB.Teams); i++ {
+		if database.DB.Teams[i].Name == TeamName {
+			idx = i
+		}
+	}
+
+	return idx
+}

@@ -5,12 +5,14 @@ import (
 	"esportgacor/models"
 )
 
-func WinratePercentage(wins, losses int)int {
-	if wins == 0 && losses == 0 {
+func WinratePercentage(wins, losses int) int {
+	total := wins + losses
+	if total == 0 {
 		return 0
 	}
-	return int(float64(wins)/float64(losses/wins)*100)
+	return int(float64(wins) / float64(total) * 100)
 }
+
 
 func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 	var Win1, Lose1, Draw1 int
@@ -30,7 +32,7 @@ func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 	idx:=linearSearchByTeamNameInClassement(TeamName1)
 	if idx == -1 {
 		Classement := models.Classement{
-		Team: database.DB.Teams[idx],
+		Team: database.DB.Teams[(linearSearchByTeamName(TeamName1))],
 		Pts: ((Win1*3)+(Draw1*1)+(Lose1*0)),
 		Win: Win1,
 		Lose: Lose1,
@@ -38,7 +40,7 @@ func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 		}
 		database.DB.Classement = append(database.DB.Classement, Classement)
 	//if yes then modify the classement instead
-	}else if idx!= 1 {
+	}else {
 		database.DB.Classement[idx].Pts+= ((Win1*3)+(Draw1*1)+(Lose1*0))
 		database.DB.Classement[idx].Win+= Win1
 		database.DB.Classement[idx].Lose+= Lose1
@@ -49,7 +51,7 @@ func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 	idx=linearSearchByTeamNameInClassement(TeamName2)
 	if idx == -1 {
 		Classement := models.Classement{
-		Team: database.DB.Teams[idx],
+		Team: database.DB.Teams[(linearSearchByTeamName(TeamName2))],
 		Pts: ((Win2*3)+(Draw2*1)+(Lose2*0)),
 		Win: Win2,
 		Lose: Lose2,
@@ -57,7 +59,7 @@ func WinLoseDraw(TeamName1, TeamName2 string, ScoreT1, ScoreT2 int) {
 		}
 		database.DB.Classement = append(database.DB.Classement, Classement)
 	//if yes then modify the classement instead
-	}else if idx!= 1 {
+	}else {
 		database.DB.Classement[idx].Pts+= ((Win2*3)+(Draw2*1)+(Lose2*0))
 		database.DB.Classement[idx].Win+= Win2
 		database.DB.Classement[idx].Lose+= Lose2

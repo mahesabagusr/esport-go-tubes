@@ -99,7 +99,7 @@ func DisplayClassement(){
 +-----------------------------------------------------------+
 `)
 fmt.Printf("|%-3s| %-10s   %-4s %-4s %-4s %-4s |\n", "Pos", "Nama Tim", "Pts", "Win", "Lose", "WR%")
-for i:= 0 ; i<= len(database.DB.Classement); i++{
+for i:= 0 ; i< len(database.DB.Classement); i++{
 	fmt.Printf("|%-3d| %-10s   %-4d %-4d %-4d %-4d |\n", i+1,database.DB.Classement[i].Team.Name, database.DB.Classement[i].Pts, database.DB.Classement[i].Win, database.DB.Classement[i].Lose, database.DB.Classement[i].Winrate)
 }
 	
