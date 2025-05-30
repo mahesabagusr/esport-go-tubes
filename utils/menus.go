@@ -13,7 +13,7 @@ func DisplayMainMenu() {
 | 1. MANAGE TEAM                                            |
 | 2. DISPLAY ALL TEAMS                                      |
 | 3. DISPLAY CLASSEMENT                                     |
-| 4. MANAGE MATCHES											|
+| 4. MANAGE MATCHES                                         |
 +-----------------------------------------------------------+
 `)
 }
@@ -98,10 +98,16 @@ func DisplayClassement(){
 |                         KLASEMEN                          |
 +-----------------------------------------------------------+
 `)
-fmt.Printf("|%-3s| %-20s   %-4s %-4s %-4s %-4s |\n", "Pos", "Nama Tim", "Pts", "Win", "Lose", "WR%")
-for i:= 0 ; i< len(database.DB.Classement); i++{
-	fmt.Printf("|%-3d| %-20s   %-4d %-4d %-4d %-4d |\n", i+1,database.DB.Classement[i].Team.Name, database.DB.Classement[i].Pts, database.DB.Classement[i].Win, database.DB.Classement[i].Lose, database.DB.Classement[i].Winrate)
+if len(database.DB.Classement)> 0 {
+	fmt.Printf("|%-3s| %-32s   %-4s %-4s %-4s %-4s|\n", "Pos", "Nama Tim", "Pts", "Win", "Lose", "WR%")
+	for i:= 0 ; i< len(database.DB.Classement); i++{
+		fmt.Printf("|%-3d| %-32s   %-4d %-4d %-4d %-4d|\n", i+1,database.DB.Classement[i].Team.Name, database.DB.Classement[i].Pts, database.DB.Classement[i].Win, database.DB.Classement[i].Lose, database.DB.Classement[i].Winrate)
+	}
+}else {
+	fmt.Println("|                       NOTHING HERE                        |")
 }
+fmt.Println("+-----------------------------------------------------------+")
+ScanString("Tekan Enter untuk melanjutkan...")
 	
 
 }

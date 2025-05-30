@@ -108,6 +108,7 @@ func DeleteTeam() {
 	DisplayOnlyTeamsMenu()
 
 	fmt.Println("=== Delete Tim ===")
+	fmt.Println("||Match dan Ranking Klasemen Tidak Akan Ikut Terhapus||")
 	teamName := ScanString("Masukkan Nama Tim yang ingin dihapus: ")
 
 	found := false

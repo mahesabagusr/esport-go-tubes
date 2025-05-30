@@ -16,22 +16,23 @@ func linearSearchByTeamID(TeamID int) int{
 }
 
 func binarySearchByMatchID(MatchID int) int {
-	var left, right, mid, idx int
-	left= 0 
-	right= len(database.DB.Matches)-1
+	var left, right, mid int
+	idx := -1 // Important: initialize to -1
+	left = 0
+	right = len(database.DB.Matches) - 1
 
-	for left<right && idx==-1 {
-		mid= (left+right)/2
-		if database.DB.Matches[mid].MatchID==MatchID{
-			idx= mid
-		}else if database.DB.Matches[mid].MatchID<MatchID{
-			left= mid +1
-		}else {
+	for left <= right && idx == -1 {
+		mid = (left + right) / 2
+		if database.DB.Matches[mid].MatchID == MatchID {
+			idx = mid
+		} else if database.DB.Matches[mid].MatchID < MatchID {
+			left = mid + 1
+		} else {
 			right = mid - 1
 		}
 	}
-	return idx
 
+	return idx
 }
 
 func linearSearchByTeamNameInClassement(TeamName string) int{

@@ -15,6 +15,7 @@ func HandleMatchMenu() {
 		return
 	case 3:
 		utils.ViewMatches()
+		utils.ScanString("Tekan Enter untuk melanjutkan...")
 		return
 	case 4 : 
 	 	return  
