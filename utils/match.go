@@ -20,10 +20,9 @@ if len(database.DB.Matches)<=0 {
 
 	for i := 0; i < len(database.DB.Matches); i++ {
 		match := database.DB.Matches[i]
-		fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		fmt.Printf("|%2d|%18s   %-3d  -  %3d   %-18s   | \n",match.MatchID, match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
 		fmt.Println("+-----------------------------------------------------------+")
 	}
-ScanString("Tekan Enter untuk melanjutkan...")
 
 }
 	
@@ -75,6 +74,7 @@ func EditMatches() {
 		fmt.Println("Belum ada Match untuk diedit")
 		return
 	} else {
+		ViewMatches()
 		fmt.Println("=== Update Match Result ===")
 		MatchID:= ScanNumber("Masukan ID Match yang ingin diubah: ")
 		idx :=binarySearchByMatchID(MatchID)
@@ -90,7 +90,7 @@ func EditMatches() {
 			match= database.DB.Matches[idx]
 			fmt.Println("Match Berhasil di Update")
 			fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
-			WinLoseDraw(match.Team1.Name, match.Team1.Name, match.Score1, match.Score2)
+			WinLoseDraw(match.Team1.Name, match.Team2.Name, match.Score1, match.Score2)
 		
 		}
 	
