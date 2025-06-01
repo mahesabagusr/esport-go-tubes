@@ -7,20 +7,20 @@ import (
 var DB *models.Database
 
 func InitDB() *models.Database {
-	teams, players:= GenerateDummyData()
-
-	lastTeamID := len(teams)
-	lastPlayerID := len(players)
-	lastMatchID := 0
+	teams, players, nTeam, nPlayer := GenerateDummyData()
 
 	DB = &models.Database{
-		Teams:         teams,
-		Classement:    []models.Classement{},
-		Players:       players,
-		Matches: 	   []models.Match{},
-		LastTeamID:    lastTeamID,
-		LastPlayerID:  lastPlayerID,
-		LastMatchID:   lastMatchID,
+		Teams:        teams,
+		NTeam:        nTeam,
+		Classement:   [models.NMAX]models.Classement{},
+		NClassement:  0,
+		Players:      players,
+		NPlayer:      nPlayer,
+		Matches:      [models.NMAX]models.Match{},
+		NMatch:       0,
+		LastTeamID:   nTeam,
+		LastPlayerID: nPlayer,
+		LastMatchID:  0,
 	}
 
 	return DB

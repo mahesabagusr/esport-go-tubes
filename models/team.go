@@ -3,7 +3,8 @@ package models
 type Team struct {
 	ID      int
 	Name    string
-	Players []Player
+	Players [NMAX]Player
+	NPlayer int 
 	Coach   string
 }
 
@@ -21,3 +22,4 @@ type Classement struct {
 	Lose    int
 	Winrate int
 }
+

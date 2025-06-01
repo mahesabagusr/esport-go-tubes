@@ -14,7 +14,7 @@ func HandleTeamMenu() {
 		utils.AddTeam()
 		return
 	case 2:
-		utils.Modifyteam()
+		utils.ModifyTeam()
 		return
 	case 3:
 		utils.DeleteTeam()
