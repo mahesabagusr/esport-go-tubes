@@ -12,14 +12,16 @@ func ViewMatches() {
 |                      DAFTAR MATCH                         |
 +-----------------------------------------------------------+
 `)
-	if len(database.DB.Matches) <= 0 {
+	if database.DB.NMatch <= 0 {
 		fmt.Println("|     There's Still Nothing Here, Please Add Matches        |")
 		fmt.Println("+-----------------------------------------------------------+")
+		return
 	}
 
-	for i := 0; i < len(database.DB.Matches); i++ {
+	for i := 0; i < database.DB.NMatch; i++ {
 		match := database.DB.Matches[i]
-		fmt.Printf("|%2d|%18s   %-3d  -  %3d   %-18s   | \n", match.MatchID, match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+		fmt.Printf("|%2d|%18s   %-3d  -  %3d   %-18s   | \n", 
+			match.MatchID, match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
 		fmt.Println("+-----------------------------------------------------------+")
 	}
 }
@@ -28,9 +30,13 @@ func AddMatches() {
 	fmt.Println("=== TAMBAHKAN MATCH ===")
 	DisplayOnlyTeamsMenu()
 	
+	if database.DB.NMatch >= models.NMAX {
+		fmt.Println("Tidak bisa menambahkan match lagi, kapasitas penuh!")
+		return
+	}
+
 	idTeam1 := ScanNumber("ID Tim Pertama: ")
 	team1Index := linearSearchByTeamID(idTeam1)
-
 	if team1Index == -1 {
 		fmt.Println("Tim pertama tidak ditemukan.")
 		return
@@ -59,14 +65,16 @@ func AddMatches() {
 		Score2:  score2,
 	}
 
-	database.DB.Matches = append(database.DB.Matches, match)
+
+	database.DB.Matches[database.DB.NMatch] = match
+	database.DB.NMatch++
 
 	fmt.Println("Match berhasil ditambahkan.")
-	WinLoseDraw(match.Team1.Name, match.Team2.Name, score1, score2,false)
+	WinLoseDraw(match.Team1.Name, match.Team2.Name, score1, score2, false)
 }
 
 func EditMatches() {
-	if len(database.DB.Matches) <= 0 {
+	if database.DB.NMatch <= 0 {
 		fmt.Println("Belum ada Match untuk diedit")
 		return
 	}

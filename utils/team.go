@@ -1,3 +1,4 @@
+// utils/team_utils.go
 package utils
 
 import (
@@ -10,18 +11,35 @@ import (
 func AddTeam() {
 	fmt.Println("=== Tambah Tim Baru ===")
 
-	teamName := ScanString("Nama Tim: ")
 
+	if database.DB.NTeam >= models.NMAX {
+		fmt.Println("Tidak bisa menambahkan tim lagi, kapasitas penuh!")
+		return
+	}
+
+	teamName := ScanString("Nama Tim: ")
 	coachName := ScanString("Nama Coach: ")
 
-	var players []models.Player
+
+	database.DB.LastTeamID++
+	newTeam := models.Team{
+		ID:      database.DB.LastTeamID,
+		Name:    teamName,
+		Coach:   coachName,
+		NPlayer: 5, 
+	}
+
+
 	for i := 0; i < 5; i++ {
 		fmt.Printf("\n-- Pemain #%d --\n", i+1)
 
+		if database.DB.NPlayer >= models.NMAX {
+			fmt.Println("Tidak bisa menambahkan pemain lagi, kapasitas penuh!")
+			return
+		}
+
 		playerName := ScanString("Nama Pemain: ")
-
 		kills := ScanNumber("Jumlah Kills: ")
-
 		deaths := ScanNumber("Jumlah Deaths: ")
 
 		database.DB.LastPlayerID++
@@ -31,117 +49,104 @@ func AddTeam() {
 			Kills:  kills,
 			Deaths: deaths,
 		}
-		players = append(players, player)
-		database.DB.Players = append(database.DB.Players, player)
+
+		newTeam.Players[i] = player
+		database.DB.Players[database.DB.NPlayer] = player
+		database.DB.NPlayer++
 	}
 
-	database.DB.LastTeamID++
-	newTeam := models.Team{
-		ID:      database.DB.LastTeamID,
-		Name:    teamName,
-		Coach:   coachName,
-		Players: players,
-	}
 
-	database.DB.Teams = append(database.DB.Teams, newTeam)
+	database.DB.Teams[database.DB.NTeam] = newTeam
+	database.DB.NTeam++
 
 	fmt.Println("\nTim berhasil ditambahkan!")
 }
 
-func Modifyteam() {
+func ModifyTeam() {
 	fmt.Println("=== Update Tim ===")
 	DisplayOnlyTeamsMenu()
 	teamName := ScanString("Masukkan Nama Tim yang ingin diubah: ")
 
+
 	idx := -1
-	for i := 0; i < len(database.DB.Teams); i++ {
+	for i := 0; i < database.DB.NTeam; i++ {
 		if database.DB.Teams[i].Name == teamName {
 			idx = i
+			break
 		}
 	}
 
 	if idx == -1 {
 		fmt.Println("Tim tidak ditemukan!")
 		return
-	} 
+	}
 
 	DisplayOnlyTeamsAndPlayersMenu(idx)
 
-		fmt.Println("=== Update Tim ===")
-		newTeamName := ScanString("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
+	fmt.Println("=== Update Tim ===")
+	newTeamName := ScanString("Nama Tim (Tekan Enter Jika Tidak Ingin Diubah): ")
+	if newTeamName != "" {
+		database.DB.Teams[idx].Name = newTeamName
+	}
 
-		if newTeamName != "" {
-			database.DB.Teams[idx].Name = newTeamName
+	coach := ScanString("Nama Coach (Tekan Enter Jika Tidak Ingin Diubah): ")
+	if coach != "" {
+		database.DB.Teams[idx].Coach = coach
+	}
+
+
+	for j := 0; j < database.DB.Teams[idx].NPlayer; j++ {
+		fmt.Printf("\n-- Pemain #%d --\n", j+1)
+		playerName := ScanString("Nama Pemain (Tekan Enter Jika Tidak Ingin Diubah): ")
+		if playerName != "" {
+			database.DB.Teams[idx].Players[j].Name = playerName
 		}
 
-		coach := ScanString("Nama Coach (Tekan Enter Jika Tidak Ingin Diubah): ")
-
-		if coach != "" {
-			database.DB.Teams[idx].Coach = coach
+		killsStr := ScanString("Jumlah Kills (Tekan Enter Jika Tidak Ingin Diubah): ")
+		if killsStr != "" {
+			kills, _ := strconv.Atoi(killsStr)
+			database.DB.Teams[idx].Players[j].Kills = kills
 		}
 
-		for j := 0; j < len(database.DB.Teams[idx].Players); j++ {
-			fmt.Printf("\n-- Pemain #%d --\n", j+1)
-			player := ScanString("Nama Pemain (Tekan Enter Jika Tidak Ingin Diubah): ")
-
-			if player != "" {
-				database.DB.Teams[idx].Players[j].Name = player
-			}
-
-			killsStr := ScanString("Jumlah Kills (Tekan Enter Jika Tidak Ingin Diubah): ")
-			if killsStr != "" {
-				kills, _ := strconv.Atoi(killsStr)
-				database.DB.Teams[idx].Players[j].Kills = kills
-			}
-
-			deathsStr := ScanString("Jumlah Deaths (Tekan Enter Jika Tidak Ingin Diubah): ")
-			if deathsStr != "" {
-				deaths, _ := strconv.Atoi(deathsStr)
-				database.DB.Teams[idx].Players[j].Deaths = deaths
-			}
+		deathsStr := ScanString("Jumlah Deaths (Tekan Enter Jika Tidak Ingin Diubah): ")
+		if deathsStr != "" {
+			deaths, _ := strconv.Atoi(deathsStr)
+			database.DB.Teams[idx].Players[j].Deaths = deaths
 		}
+	}
 }
 
 func DeleteTeam() {
-	sortedTeam := SortTeamsWithName(database.DB.Teams)
-
+	var Team models.Team
 	DisplayOnlyTeamsMenu()
 
 	fmt.Println("=== Delete Tim ===")
 	fmt.Println("||Match dan Ranking Klasemen Tidak Akan Ikut Terhapus||")
 	teamName := ScanString("Masukkan Nama Tim yang ingin dihapus: ")
 
-	found := false
-	var targetTeamId int = -1
 
-	low, high := 0, len(sortedTeam)-1
-
-	for low <= high {
-		mid := low + (high-low)/2
-		if sortedTeam[mid].Name == teamName {
-			found = true
-			targetTeamId = sortedTeam[mid].ID
+	idx := -1
+	for i := 0; i < database.DB.NTeam; i++ {
+		if database.DB.Teams[i].Name == teamName {
+			idx = i
 			break
-		} else if sortedTeam[mid].Name < teamName {
-			low = mid + 1
-		} else {
-			high = mid - 1
 		}
 	}
 
-	if found {
-		i := 0
-		indexToDelete := -1
-		for i < len(database.DB.Teams) {
-			if database.DB.Teams[i].ID == targetTeamId {
-				indexToDelete = i
-				break
-			}
-			i++
-		}
-		database.DB.Teams = append(database.DB.Teams[:indexToDelete], database.DB.Teams[indexToDelete+1:]...)
-		fmt.Println("Tim berhasil dihapus!")
-	} else {
+	if idx == -1 {
 		fmt.Println("Tim tidak ditemukan!")
+		return
 	}
+
+
+	for i := idx; i < database.DB.NTeam-1; i++ {
+		database.DB.Teams[i] = database.DB.Teams[i+1]
+	}
+
+
+	database.DB.NTeam--
+
+	database.DB.Teams[database.DB.NTeam] = Team
+
+	fmt.Println("Tim berhasil dihapus!")
 }

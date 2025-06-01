@@ -50,11 +50,11 @@ func DisplayAllTeamsAndPlayersMenu() {
 |                   DAFTAR SEMUA TIM & PEMAIN               |
 +-----------------------------------------------------------+
 `)
-	for i := 0; i < len(database.DB.Teams); i++ {
+	for i := 0; i < database.DB.NTeam; i++ {
 		team := database.DB.Teams[i]
 		fmt.Printf("| ID: %-3d Nama Tim: %-20s Coach: %-10s |\n", team.ID, team.Name, team.Coach)
 		fmt.Println("| Pemain:")
-		for j := 0; j < len(team.Players); j++ {
+		for j := 0; j < team.NPlayer; j++ {
 			player := team.Players[j]
 			fmt.Printf("|   - ID: %-3d Nama: %-15s Kills: %-3d Deaths: %-3d |\n", player.ID, player.Name, player.Kills, player.Deaths)
 		}
@@ -69,7 +69,7 @@ func DisplayOnlyTeamsMenu(){
 |       DAFTAR TIM          |
 +---------------------------+
 `)
-    for i := 0; i < len(database.DB.Teams); i++ {
+    for i := 0; i < database.DB.NTeam; i++ {
         team := database.DB.Teams[i]
         fmt.Printf("| %-3d | %-20s |\n", team.ID, team.Name)
     }
@@ -85,7 +85,7 @@ func DisplayOnlyTeamsAndPlayersMenu(i int) {
 		team := database.DB.Teams[i]
 		fmt.Printf("| ID: %-3d Nama Tim: %-20s Coach: %-10s |\n", team.ID, team.Name, team.Coach)
 		fmt.Println("| Pemain:")
-		for j := 0; j < len(team.Players); j++ {
+		for j := 0; j < team.NPlayer; j++ {
 			player := team.Players[j]
 			fmt.Printf("|   - ID: %-3d Nama: %-15s Kills: %-3d Deaths: %-3d |\n", player.ID, player.Name, player.Kills, player.Deaths)
 		}
@@ -98,9 +98,9 @@ func DisplayClassement(){
 |                         KLASEMEN                          |
 +-----------------------------------------------------------+
 `)
-if len(database.DB.Classement)> 0 {
+if database.DB.NClassement > 0 {
 	fmt.Printf("|%-3s| %-32s   %-4s %-4s %-4s %-4s|\n", "Pos", "Nama Tim", "Pts", "Win", "Lose", "WR%")
-	for i:= 0 ; i< len(database.DB.Classement); i++{
+	for i:= 0 ; i< database.DB.NClassement; i++{
 		fmt.Printf("|%-3d| %-32s   %-4d %-4d %-4d %-4d|\n", i+1,database.DB.Classement[i].Team.Name, database.DB.Classement[i].Pts, database.DB.Classement[i].Win, database.DB.Classement[i].Lose, database.DB.Classement[i].Winrate)
 	}
 }else {
