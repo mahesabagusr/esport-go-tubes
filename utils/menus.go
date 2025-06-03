@@ -2,6 +2,7 @@ package utils
 
 import (
 	"esportgacor/database"
+
 	"fmt"
 )
 
@@ -93,6 +94,7 @@ func DisplayOnlyTeamsAndPlayersMenu(i int) {
 }
 
 func DisplayClassement(){
+	SortTeamsByPts(database.DB.Classement[:database.DB.NClassement])
 	fmt.Printf(`
 +-----------------------------------------------------------+
 |                         KLASEMEN                          |

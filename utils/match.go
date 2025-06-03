@@ -68,7 +68,7 @@ func AddMatches() {
 
 	database.DB.Matches[database.DB.NMatch] = match
 	database.DB.NMatch++
-
+  SortTeamsByPts(database.DB.Classement[:database.DB.NClassement])
 	fmt.Println("Match berhasil ditambahkan.")
 	WinLoseDraw(match.Team1.Name, match.Team2.Name, score1, score2, false)
 }
@@ -82,7 +82,7 @@ func EditMatches() {
 	ViewMatches()
 	fmt.Println("=== Update Match Result ===")
 	MatchID := ScanNumber("Masukan ID Match yang ingin diubah: ")
-	idx := binarySearchByMatchID(MatchID)
+	idx := linearSearchByTeamID(MatchID)
 	if idx == -1 {
 		fmt.Println("Match Tidak Ditemukan")
 		return
@@ -91,7 +91,7 @@ func EditMatches() {
 	match := database.DB.Matches[idx]
 	fmt.Printf("Match Ditemukan \n")
 	fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", 
-		match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
+	match.Team1.Name, match.Score1, match.Score2, match.Team2.Name)
 
 
 	WinLoseDraw(match.Team1.Name, match.Team2.Name, match.Score1, match.Score2, true)
@@ -106,7 +106,7 @@ func EditMatches() {
 
 
 	WinLoseDraw(match.Team1.Name, match.Team2.Name, newScore1, newScore2, false)
-
+	SortTeamsByPts(database.DB.Classement[:database.DB.NClassement])
 	fmt.Println("Match Berhasil di Update")
 	fmt.Printf("|%20s   %-3d  -  %3d   %-20s  | \n", 
 		match.Team1.Name, newScore1, newScore2, match.Team2.Name)
