@@ -24,7 +24,7 @@ Selamat datang di **Esport Gacor**, sebuah aplikasi konsol (CLI) yang dirancang 
 
 Proyek ini disusun dengan modularitas untuk kemudahan pengembangan dan pemeliharaan.
 
-
+```
 esportgacor/
 ├── main.go                 # Titik masuk utama aplikasi
 ├── go.mod                  # File modul Go
@@ -60,7 +60,7 @@ esportgacor/
     ├── search.go
     ├── sort.go
     └── team.go
-
+```
 
 ## ⚙️ Cara Menjalankan Aplikasi
 
