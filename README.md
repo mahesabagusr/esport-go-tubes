@@ -26,19 +26,6 @@ Proyek ini disusun dengan modularitas untuk kemudahan pengembangan dan pemelihar
 
 ```
 esportgacor/
-├── main.go                 # Titik masuk utama aplikasi
-├── go.mod                  # File modul Go
-├── go.sum                  # Checksum dependensi
-├── handlers/               # Mengatur logika menu dan input pengguna
-│   ├── mainMenuHandler.go
-│   ├── matchMenuHandler.go
-│   └── teamMenuHandler.go
-├── models/                 # Definisi struct data (Team, Player, Match, dll.)
-│   └── models.go
-├── database/               # Inisialisasi dan manajemen data (termasuk data dummy)
-│   ├── database.go
-│   ├── dummy.go
-esportgacor/
 ├── main.go                  # Titik masuk utama aplikasi
 ├── go.mod                   # File modul Go
 ├── go.sum                   # Checksum dependensi
